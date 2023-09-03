@@ -12,4 +12,7 @@ public class SharedViewModel extends ViewModel {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public static class tjestenina {
+    }
 }

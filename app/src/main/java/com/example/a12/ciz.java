@@ -1,13 +1,12 @@
 package com.example.a12;
 
-import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
+import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,16 +16,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.util.Map;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-
-public class biftek extends AppCompatActivity {
+public class ciz extends AppCompatActivity {
 
     private LikesDatabaseHelper dbHelper;
     private TextView likeCountTextView;
@@ -36,11 +27,11 @@ public class biftek extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_biftek);
+        setContentView(R.layout.activity_ciz);
 
         dbHelper = new LikesDatabaseHelper(this);
-        likeCountTextView = findViewById(R.id.likeCountTextView);
-        dislikeCountTextView = findViewById(R.id.dislikeCountTextView);
+        likeCountTextView = findViewById(R.id.likeCountTextViewCiz); // Promijenite ID-a na odgovarajući u vašem XML-u
+        dislikeCountTextView = findViewById(R.id.dislikeCountTextViewCiz); // Promijenite ID-a na odgovarajući u vašem XML-u
 
         // Čitanje korisničkog imena iz datoteke
         username = readFromFile("user_data.txt");
@@ -48,7 +39,7 @@ public class biftek extends AppCompatActivity {
 
         trbrojlike();
 
-        ImageView myImageView = findViewById(R.id.homeIcon);
+        ImageView myImageView = findViewById(R.id.homeIconCiz); // Promijenite ID-a na odgovarajući u vašem XML-u
 
         // Postavite OnClickListener za ImageView
         myImageView.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +49,7 @@ public class biftek extends AppCompatActivity {
             }
         });
 
-        ImageView myImageView2 = findViewById(R.id.notificationsIcon);
+        ImageView myImageView2 = findViewById(R.id.notificationsIconCiz); // Promijenite ID-a na odgovarajući u vašem XML-u
 
         myImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +57,10 @@ public class biftek extends AppCompatActivity {
                 openAlbumiFragment();
             }
         });
-
     }
+
     private void checkAndCreateFile() {
-        String fileName = "biftekLiked.txt";
+        String fileName = "cizLiked.txt"; // Promijenite naziv datoteke za "Ciz"
 
         File file = new File(getFilesDir(), fileName);
 
@@ -82,40 +73,39 @@ public class biftek extends AppCompatActivity {
             }
         }
     }
+
     public String generateLikeId(String username) {
-        String userLike = username + "_liked";
+        String userLike = username + "_liked_ciz"; // Promijenite naziv za "Ciz"
         return userLike;
     }
 
     private void updateCounts() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyIntDataPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("LikeDislikePrefsCiz", MODE_PRIVATE);
 
-        int currentLikeCount = sharedPreferences.getInt("like_count", 0); // Učitaj trenutni broj lajkova
+        int currentLikeCount = sharedPreferences.getInt("like_count_ciz", 0); // Učitaj trenutni broj lajkova
         int newLikeCount = currentLikeCount + 1; // Dodaj 1 na trenutni broj lajkova
-        likeCountTextView.setText(String.valueOf(currentLikeCount)); // Postavi trenutni broj lajkova u TextView
+        likeCountTextView.setText(String.valueOf(newLikeCount)); // Postavi trenutni broj lajkova u TextView
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("like_count", newLikeCount); // Spremi novi broj lajkova
+        editor.putInt("like_count_ciz", newLikeCount); // Spremi novi broj lajkova
         editor.apply();
         trbrojlike();
     }
 
-
-
-
     private void openSongFragment() {
-        Intent intent = new Intent(biftek.this, MainActivity.class);
+        Intent intent = new Intent(ciz.this, MainActivity.class);
         String poruka = "song";
         intent.putExtra("dodatna", poruka);
         startActivity(intent);
     }
 
     private void openAlbumiFragment() {
-        Intent intent = new Intent(biftek.this, MainActivity.class);
+        Intent intent = new Intent(ciz.this, MainActivity.class);
         String poruka = "album";
         intent.putExtra("dodatna", poruka);
         startActivity(intent);
     }
+
     public void onLikeClick(View view) {
         String likeId = generateLikeId(username);
 
@@ -123,23 +113,22 @@ public class biftek extends AppCompatActivity {
             markUserLiked(likeId);
             updateCounts();
         } else {
-            Toast.makeText(this, "You have already liked this.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Već ste lajkali ovu stavku.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private boolean hasUserLiked(String likeId) {
-        String contentFromFile = readFromFile("biftekLiked.txt");
+        String contentFromFile = readFromFile("cizLiked.txt"); // Promijenite naziv datoteke za "Ciz"
         return contentFromFile.contains(likeId);
     }
 
     private void markUserLiked(String likeId) {
-        writeToFile("biftekLiked.txt", likeId + "\n", Context.MODE_APPEND);
+        writeToFile("cizLiked.txt", likeId + "\n"); // Promijenite naziv datoteke za "Ciz"
     }
 
-
-    private void writeToFile(String fileName, String content, int mode) {
+    private void writeToFile(String fileName, String content) {
         try {
-            FileOutputStream fos = openFileOutput(fileName, mode | Context.MODE_APPEND);
+            FileOutputStream fos = openFileOutput(fileName, Context.MODE_APPEND);
             fos.write(content.getBytes());
             fos.close();
         } catch (Exception e) {
@@ -170,7 +159,6 @@ public class biftek extends AppCompatActivity {
     }
 
     public void onLogoutClick(View view) {
-
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
     }
@@ -182,47 +170,44 @@ public class biftek extends AppCompatActivity {
             markUserDisliked(dislikeId);
             updateCounts1();
         } else {
-            Toast.makeText(this, "You have already disliked this.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Već ste dislajkali ovu stavku.", Toast.LENGTH_SHORT).show();
         }
     }
-    private void updateCounts1() {
-        SharedPreferences sharedPreferences = getSharedPreferences("Dislike", MODE_PRIVATE);
 
-        int currentLikeCount = sharedPreferences.getInt("dislike_count", 0); // Učitaj trenutni broj lajkova
-        int newLikeCount = currentLikeCount + 1; // Dodaj 1 na trenutni broj lajkova
-        dislikeCountTextView.setText(String.valueOf(currentLikeCount)); // Postavi trenutni broj lajkova u TextView
+    private void updateCounts1() {
+        SharedPreferences sharedPreferences = getSharedPreferences("DislikePrefsCiz", MODE_PRIVATE);
+
+        int currentLikeCount = sharedPreferences.getInt("dislike_count_ciz", 0); // Učitaj trenutni broj dislajkova
+        int newLikeCount = currentLikeCount + 1; // Dodaj 1 na trenutni broj dislajkova
+        dislikeCountTextView.setText(String.valueOf(newLikeCount)); // Postavi trenutni broj dislajkova u TextView
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("dislike_count", newLikeCount); // Spremi novi broj lajkova
+        editor.putInt("dislike_count_ciz", newLikeCount); // Spremi novi broj dislajkova
         editor.apply();
         trbrojlike();
     }
-    private void trbrojlike(){
-        SharedPreferences sharedPreferences = getSharedPreferences("MyIntDataPrefs", MODE_PRIVATE);
-        int currentLikeCount = sharedPreferences.getInt("like_count", 0);
+
+    private void trbrojlike() {
+        SharedPreferences sharedPreferences = getSharedPreferences("LikeDislikePrefsCiz", MODE_PRIVATE);
+        int currentLikeCount = sharedPreferences.getInt("like_count_ciz", 0);
         likeCountTextView.setText(String.valueOf(currentLikeCount)); // Postavi trenutni broj lajkova u TextView
 
-        SharedPreferences dislikeSharedPreferences = getSharedPreferences("Dislike", MODE_PRIVATE);
-        int currentDislikeCount = dislikeSharedPreferences.getInt("dislike_count", 0);
+        SharedPreferences dislikeSharedPreferences = getSharedPreferences("DislikePrefsCiz", MODE_PRIVATE);
+        int currentDislikeCount = dislikeSharedPreferences.getInt("dislike_count_ciz", 0); // Učitaj trenutni broj dislajkova
         dislikeCountTextView.setText(String.valueOf(currentDislikeCount)); // Postavi trenutni broj dislajkova u TextView
-
     }
 
     public String generateDislikeId(String username) {
-        String userDislike = username + "_disliked";
+        String userDislike = username + "_disliked_ciz"; // Promijenite naziv za "Ciz"
         return userDislike;
     }
 
     private boolean hasUserDisliked(String dislikeId) {
-        String contentFromFile = readFromFile("biftekDisliked.txt");
+        String contentFromFile = readFromFile("cizDisliked.txt"); // Promijenite naziv datoteke za "Ciz"
         return contentFromFile.contains(dislikeId);
     }
 
     private void markUserDisliked(String dislikeId) {
-        writeToFile("biftekDisliked.txt", dislikeId + "\n", Context.MODE_APPEND);
+        writeToFile("cizDisliked.txt", dislikeId + "\n"); // Promijenite naziv datoteke za "Ciz"
     }
-
-
-
-
 }

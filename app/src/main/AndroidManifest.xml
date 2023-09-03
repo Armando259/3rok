@@ -17,6 +17,24 @@
         android:theme="@style/Theme.12"
         tools:targetApi="31">
         <activity
+            android:name=".ciz"
+            android:exported="false" />
+        <activity
+            android:name=".tiramisu"
+            android:exported="false" />
+        <activity
+            android:name=".lavacake"
+            android:exported="false" />
+        <activity
+            android:name=".passta"
+            android:exported="false" />
+        <activity
+            android:name=".Tjestenina"
+            android:exported="false" />
+        <activity
+            android:name=".mesnaplata"
+            android:exported="false" />
+        <activity
             android:name=".biftek"
             android:exported="false" />
         <activity

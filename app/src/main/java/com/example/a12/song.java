@@ -72,15 +72,15 @@ public class song extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_album, container, false);
+        View view = inflater.inflate(R.layout.fragment_song, container, false);
 
-        recyclerView = view.findViewById(R.id.albumiRecyclerView); // Zamijenite s ID-om RecyclerViewa u vašem layoutu
+        recyclerView = view.findViewById(R.id.songRecyclerView); // Zamijenite s ID-om RecyclerViewa u vašem layoutu
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         imageList = new ArrayList<>();
         imageList.add(new ImageItem(R.drawable.biftek, "Biftek")); // Dodajte svoje slike i naslove
         imageList.add(new ImageItem(R.drawable.plata, "Mesna plata"));
-        imageList.add(new ImageItem(R.drawable.trtufi, "Tjestenina s trtufima"));
+        imageList.add(new ImageItem(R.drawable.trtufi, "Tjestenina s tartufima"));
         // Dodajte više slika i naslova prema potrebi
 
         adapter = new ImageListAdapter(getContext(), imageList);
