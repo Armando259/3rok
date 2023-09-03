@@ -1,6 +1,10 @@
 package com.example.a12;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +23,7 @@ import java.util.List;
  * Use the {@link album#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class album extends Fragment {
+public class song extends Fragment {
     private RecyclerView recyclerView;
     private ImageListAdapter adapter;
     private List<ImageItem> imageList;
@@ -32,7 +36,7 @@ public class album extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public album() {
+    public song() {
         // Required empty public constructor
     }
 
@@ -53,6 +57,8 @@ public class album extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,4 +88,6 @@ public class album extends Fragment {
 
         return view;
     }
+
+
 }

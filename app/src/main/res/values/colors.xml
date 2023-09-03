@@ -2,7 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="pozadina">#B9E9FF</color>
+    <color name="pozadina">#08449E</color>
     <color name="crna">#000000</color>
+    <color name="pinki">#DAE328F1</color>
+    <color name="siva">#A5A5A5</color>
+
 
 </resources>
