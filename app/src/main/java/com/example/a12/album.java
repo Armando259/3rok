@@ -68,13 +68,14 @@ public class album extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_album, container, false);
 
-        recyclerView = view.findViewById(R.id.albumiRecyclerView);
+        recyclerView = view.findViewById(R.id.albumiRecyclerView); // Zamijenite s ID-om RecyclerViewa u vašem layoutu
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         imageList = new ArrayList<>();
-        imageList.add(new ImageItem(R.drawable.lavacake, "Lava cake"));
+        imageList.add(new ImageItem(R.drawable.lavacake, "Lava cake")); // Dodajte svoje slike i naslove
         imageList.add(new ImageItem(R.drawable.tiramisu, "Tiramisu"));
         imageList.add(new ImageItem(R.drawable.cheesecake, "Cheesecake s malinama"));
+        // Dodajte više slika i naslova prema potrebi
 
         adapter = new ImageListAdapter1(getContext(), imageList);
         recyclerView.setAdapter(adapter);
