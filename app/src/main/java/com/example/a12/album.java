@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class album extends Fragment {
     private RecyclerView recyclerView;
-    private ImageListAdapter adapter;
+    private ImageListAdapter1 adapter;
     private List<ImageItem> imageList;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,16 +68,15 @@ public class album extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_album, container, false);
 
-        recyclerView = view.findViewById(R.id.albumiRecyclerView); // Zamijenite s ID-om RecyclerViewa u vašem layoutu
+        recyclerView = view.findViewById(R.id.albumiRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         imageList = new ArrayList<>();
-        imageList.add(new ImageItem(R.drawable.biftek, "Biftek")); // Dodajte svoje slike i naslove
-        imageList.add(new ImageItem(R.drawable.plata, "Mesna plata"));
-        imageList.add(new ImageItem(R.drawable.trtufi, "Tjestenina s trtufima"));
-        // Dodajte više slika i naslova prema potrebi
+        imageList.add(new ImageItem(R.drawable.lavacake, "Lava cake"));
+        imageList.add(new ImageItem(R.drawable.tiramisu, "Tiramisu"));
+        imageList.add(new ImageItem(R.drawable.cheesecake, "Cheesecake s malinama"));
 
-        adapter = new ImageListAdapter(getContext(), imageList);
+        adapter = new ImageListAdapter1(getContext(), imageList);
         recyclerView.setAdapter(adapter);
 
         return view;

@@ -5,6 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileOutputStream;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -51,7 +63,13 @@ public class Registration extends AppCompatActivity {
                             Boolean insert = DB.insertData(user, pass);
                             if(insert==true){
                                 Toast.makeText(Registration.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);String userName = user;
+                                String fileName = "user_data.txt";
+
+                                String content = userName + "\n"; // Novi sadrzaj koji će zamijeniti stari
+
+                                writeContentToFile(fileName, content); // Upisivanje novog sadržaja u datoteku
+
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(Registration.this, "Registration failed", Toast.LENGTH_SHORT).show();
@@ -80,10 +98,20 @@ public class Registration extends AppCompatActivity {
         regtext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Pokrenite drugu aktivnost ovdje
+                // Pokreni drugu aktivnost
                 Intent intent = new Intent(Registration.this, login.class);
                 startActivity(intent);
             }
         });
+    }
+
+    private void writeContentToFile(String fileName, String content) {
+        try {
+            FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(content.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

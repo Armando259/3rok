@@ -78,26 +78,21 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
 
         if (cursor.getCount() > 0) {
-            // User exists, move cursor to first row
             cursor.moveToFirst();
 
-            // Extract the data you need from the cursor
-            String foundUsername = cursor.getString(cursor.getColumnIndex("username"));
-            String foundPassword = cursor.getString(cursor.getColumnIndex("password"));
+            String foundUsername = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            String foundPassword = cursor.getString(cursor.getColumnIndexOrThrow("password"));
 
-            // Close the cursor
             cursor.close();
 
-            // If the retrieved username and password match the input, insert the row at the beginning
+            // Ako odgovara korisnicko ime i password, umetni na pocetak
             if (foundUsername.equals(username) && foundPassword.equals(password)) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("username", foundUsername);
                 contentValues.put("password", foundPassword);
 
-                // Delete the existing row
                 db.delete("users", "username = ?", new String[]{foundUsername});
 
-                // Insert the row at the beginning
                 db.insert("users", null, contentValues);
 
                 return true;

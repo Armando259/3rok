@@ -14,25 +14,25 @@ import com.example.a12.R;
 
 import java.util.List;
 
-public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.ImageViewHolder> {
+public class ImageListAdapter1 extends RecyclerView.Adapter<ImageListAdapter.ImageViewHolder> {
 
     private Context context;
     private List<ImageItem> imageList;
 
-    public ImageListAdapter(Context context, List<ImageItem> imageList) {
+    public ImageListAdapter1(Context context, List<ImageItem> imageList) {
         this.context = context;
         this.imageList = imageList;
     }
 
     @NonNull
     @Override
-    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ImageListAdapter.ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item_layout, parent, false);
-        return new ImageViewHolder(view);
+        return new ImageListAdapter.ImageViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ImageListAdapter.ImageViewHolder holder, int position) {
         ImageItem currentItem = imageList.get(position);
 
         // Postavljanje slike iz drawable resursa
@@ -45,13 +45,13 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
                 Intent intent;
                 switch (holder.getAdapterPosition()) {
                     case 0:
-                        intent = new Intent(view.getContext(), biftek.class);
+                        intent = new Intent(view.getContext(),lavacake.class);
                         break;
                     case 1:
-                        intent = new Intent(view.getContext(), mesnaplata.class);
+                        intent = new Intent(view.getContext(), tiramisu.class);
                         break;
                     case 2:
-                        intent = new Intent(view.getContext(), passta.class);
+                        intent = new Intent(view.getContext(), ciz.class);
                         break;
 
 
@@ -80,3 +80,4 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
         }
     }
 }
+

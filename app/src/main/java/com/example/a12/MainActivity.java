@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import android.util.Log;
+
+import com.example.a12.song;
 
 import android.Manifest;
 import android.content.Intent;
@@ -24,12 +27,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intViewPager();
+
+        String dodatnaPoruka;
+        dodatnaPoruka = getIntent().getStringExtra("dodatna");
+        if (dodatnaPoruka == null) {
+            dodatnaPoruka = "song";
+        }
+
+        Log.d("mojjjj", dodatnaPoruka);
+
+
+        // Provjera da li postoji poruka
+        if (dodatnaPoruka.equals("album")) {
+            intViewPager1();
+            Log.d("mojee", dodatnaPoruka);
+        } else{
+            intViewPager();
+        }
+
 
 
     }
 
 
+    private void intViewPager1() {
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new song(), "Glavna jela");
+        viewPagerAdapter.addFragment(new album(), "Deserti");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setCurrentItem(1);
+
+    }
     private void intViewPager() {
         ViewPager viewPager = findViewById(R.id.viewpager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
@@ -38,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new album(), "Deserti");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setCurrentItem(0);
+
     }
 
     public static class ViewPagerAdapter extends FragmentPagerAdapter {

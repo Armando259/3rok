@@ -43,12 +43,12 @@ public class login extends AppCompatActivity {
                         Intent intent = new Intent(login.this, MainActivity.class);
                         startActivity(intent);
                         Toast.makeText(login.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        String userName = user; // Promenite ovo sa stvarnim korisničkim imenom
+                        String userName = user;
                         String fileName = "user_data.txt";
 
-                        String content = userName + "\n"; // Novi sadržaj koji će zamijeniti stari
+                        String content = userName + "\n"; // Novi sadrzaj koji će zamijeniti stari
 
-                        writeContentToFile(fileName, content); // Upisivanje novog sadržaja u datoteku
+                        writeContentToFile(fileName, content); // Upisivanje novog sadrzaja u datoteku
 
                     } else {
                         Toast.makeText(login.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

@@ -23,21 +23,21 @@ public class pocetni extends AppCompatActivity {
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Pokrenite drugu aktivnost ovdje
+                // Pokreni drugu aktivnost ovdje
                 Intent intent = new Intent(pocetni.this, login.class);
                 startActivity(intent);
             }
         });
         String fileName = "user_data.txt"; // Ime datoteke
-        String content = ""; // Početni sadržaj datoteke
+        String content = ""; // Pocetni sadrzaj datoteke
 
-        // Provera da li datoteka već postoji, ako ne, stvori je
+        // Provjera da li datoteka vec postoji, ako ne, stvori je
         if (!fileExists(fileName)) {
             createTextFile(this, fileName, content);
         }
     }
 
-    // Funkcija za proveru postojanja datoteke
+    // Funkcija za provjeru postojanja datoteke
     private boolean fileExists(String fileName) {
         File file = new File(getFilesDir(), fileName);
         return file.exists();

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".lavacake">
+
+    <!-- Gumbi za nazad i odjavu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+        <Button
+            android:id="@+id/backButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onBackClick"
+            android:text="Nazad" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/logoutButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odjava"
+            android:onClick="onLogoutClick" />
+
+    </LinearLayout>
+
+    <!-- Naslov -->
+    <TextView
+        android:id="@+id/lavacakeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RestoranX"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Slika i opis -->
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/lavacake" />
+
+    <TextView
+        android:id="@+id/titleTextView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lava Cake"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descriptionTextView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lava Cake je ukusni desert pripremljen od čokolade i punjen toplim čokoladnim sirupom. Savršen završetak vašeg obroka." />
+
+    <TextView
+        android:id="@+id/descriptionTextView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cijena: 10€"
+        android:textSize="16dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TableLayout
+        android:id="@+id/likeTable4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <!-- Prvi red sa slikama -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/likeImage4"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/like"
+                android:contentDescription="Like"
+                android:clickable="true"
+                android:onClick="onLikeClick" />
+
+            <ImageView
+                android:id="@+id/dislikeImage4"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/dislike"
+                android:contentDescription="Dislike"
+                android:clickable="true"
+                android:onClick="onDislikeClick" />
+        </TableRow>
+
+        <!-- Drugi red sa tekstom i brojem lajkova -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/likeCountTextView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dislikeCountTextView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:elevation="80dp"
+        android:gravity="bottom"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/homeIcon4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:padding="8dp"
+                android:src="@drawable/gj" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/notificationsIcon4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:onClick="onNotificationsClick"
+                android:padding="8dp"
+                android:src="@drawable/cupcake" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>
